@@ -1,0 +1,4 @@
+Model,AUPRC
+Baseline_Logistic,0.7213150704689043
+Baseline_RandomForest,0.8719481096895175
+Advanced_Stacking,0.8381291929109853
