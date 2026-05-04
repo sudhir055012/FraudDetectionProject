@@ -50,7 +50,7 @@ class FixedCatBoostClassifier(CatBoostClassifier, BaseEstimator, ClassifierMixin
         return MockTags()
 
 
-# 1️⃣ Visualization: Class Distribution
+# Visualization: Class Distribution
 def plot_class_distribution(y, stage="Original"):
     plt.figure(figsize=(5, 4))
     sns.countplot(x=y)
@@ -61,7 +61,7 @@ def plot_class_distribution(y, stage="Original"):
     plt.close()
 
 
-# 2️⃣ Visualization: Transaction Amount Distribution
+# Visualization: Transaction Amount Distribution
 def plot_amount_distribution(df):
     plt.figure(figsize=(6, 4))
     # Using log_scale because transaction amounts vary wildly
@@ -116,7 +116,7 @@ def run_experiment(name, model, X_train, y_train, X_test, y_test):
 
     auprc = average_precision_score(y_test, y_probs)
 
-    # 3️⃣ Visualization: Precision-Recall Curve (REQUIRED for Fraud)
+    #  Visualization: Precision-Recall Curve (REQUIRED for Fraud)
     precision, recall, _ = precision_recall_curve(y_test, y_probs)
     plt.figure(figsize=(6, 4))
     plt.plot(recall, precision, label=f"AUPRC = {auprc:.3f}")
@@ -167,7 +167,7 @@ if __name__ == "__main__":
         performance_results.append(
             run_experiment("Advanced_Stacking", ensemble_model, X_train, y_train, X_test, y_test))
 
-        # 4️⃣ Visualization: Final Model Comparison Bar Chart
+        #  Visualization: Final Model Comparison Bar Chart
         summary_df = pd.DataFrame(performance_results)
         summary_df.to_csv('../results/model_comparison_summary.csv', index=False)
 
@@ -178,7 +178,7 @@ if __name__ == "__main__":
         plt.savefig("../results/model_comparison_barplot.png")
         plt.close()
 
-        # 5️⃣ XAI: SHAP Explanations
+        #  XAI: SHAP Explanations
         print("\n--- Generating SHAP Explanations ---")
         xgb_internal = ensemble_model.named_estimators_['xgb']
         explainer = shap.TreeExplainer(xgb_internal)
